@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'kr.jclab.simplejavasoft'
+version '1.0.0'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'kr.jclab.simplejavasoft.simpleclusterconfig.SimpleClusterConfig'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
